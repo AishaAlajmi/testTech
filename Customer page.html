@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Keycard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 200px;
+            height: auto;
+        }
+
+        .upload-box {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            padding: 40px;
+            margin-bottom: 20px;
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upload-box input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-box img {
+            width: 25px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .upload-box p {
+            margin: 0;
+            color: #888;
+        }
+
+        .button {
+            background-color: #0E989D;
+            color: #ffffff;
+            border: none;
+            border-radius: 15px;
+            padding: 15px 50px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #006666;
+        }
+
+        .info-text {
+            color: #BDB4B4;
+            margin-top: 10px;
+        }
+
+        /* Loading and success overlays */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #0E989D;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        .success-box {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .success-box img {
+            width: 70px; /* Increased the size of the success icon */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .success-box p {
+            margin: 0;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/Techlad2 5.png" alt="TechLad Logo">
+        </div>
+        <div class="upload-box">
+            <input type="file" id="keycardUpload" accept="image/*" onchange="previewFile()">
+            <img id="uploadIcon" src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/upload-icon.png" alt="Upload Icon">
+            <p id="uploadText">Upload the Keycard</p>
+        </div>
+        <button class="button" onclick="showLoading()">Add</button>
+        <p class="info-text">You will add your keycard to your digital wallet</p>
+    </div>
+
+    <div class="overlay" id="overlay">
+        <div class="loading-spinner" id="loadingSpinner"></div>
+        <div class="success-box" id="successBox">
+            <img src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/success-icon.png" alt="Success Icon">
+            <p>Your keycard added successfully</p>
+            <button class="button" onclick="hideSuccess()">Ok</button>
+        </div>
+    </div>
+
+    <script>
+        function previewFile() {
+            const preview = document.getElementById('uploadIcon');
+            const file = document.getElementById('keycardUpload').files[0];
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                // convert image file to base64 string
+                preview.src = reader.result;
+                document.getElementById('uploadText').style.display = 'none';
+            }, false);
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('overlay').style.display = 'flex';
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('successBox').style.display = 'none';
+
+            // Simulate loading for 3 seconds
+            setTimeout(showSuccess, 3000);
+        }
+
+        function showSuccess() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+            document.getElementById('successBox').style.display = 'block';
+        }
+
+        function hideSuccess() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
