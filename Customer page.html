@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -116,7 +117,8 @@
         }
 
         .success-box img {
-            width: 70px; /* Increased the size of the success icon */
+            width: 70px;
+            /* Increased the size of the success icon */
             height: auto;
             margin-bottom: 20px;
         }
@@ -128,19 +130,25 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="logo">
-            <img src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/Techlad2 5.png" alt="TechLad Logo">
+            <img src="/public/assets/Techlad2 5.png" alt="TechLad Logo">
         </div>
         <div class="upload-box">
             <input type="file" id="keycardUpload" accept="image/*" onchange="previewFile()">
-            <img id="uploadIcon" src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/upload-icon.png" alt="Upload Icon">
+            <img id="uploadIcon" src="/public/assets/upload-icon.png" alt="Upload Icon">
             <p id="uploadText">Upload the Keycard</p>
         </div>
         <button class="button" onclick="showLoading()">Add</button>
@@ -150,7 +158,7 @@
     <div class="overlay" id="overlay">
         <div class="loading-spinner" id="loadingSpinner"></div>
         <div class="success-box" id="successBox">
-            <img src="C:/Users/aisha/Downloads/techlad-main/techlad-main/techLad/public/assets/success-icon.png" alt="Success Icon">
+            <img src="/public/assets/success-icon.png" alt="Success Icon">
             <p>Your keycard added successfully</p>
             <button class="button" onclick="hideSuccess()">Ok</button>
         </div>
@@ -192,4 +200,5 @@
         }
     </script>
 </body>
+
 </html>
